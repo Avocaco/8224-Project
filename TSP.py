@@ -97,7 +97,7 @@ def succ_swap(x, order, n):
     return x, order
     
     
-    def step(x, order, n):
+def step(x, order, n):
     choice = random.randint(1, 1)
 
     if choice == 0:
