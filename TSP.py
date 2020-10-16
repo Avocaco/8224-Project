@@ -4,18 +4,20 @@ import random
 import math
 import time
 
-dim = 2
-n = 50
-size_lim = 1000
+dim = 2 # dimension of sample
+n = 50  # number of sample
+high = 1000 # maximum value of random initialised sample
 
-sample = np.random.randint(size_lim, size=(n, dim))
+sample = np.random.randint(high, size=(n, dim))
 
 x = np.zeros((n, n))
-c = np.repeat(sample[:,None, :], n, axis=1)
-c = np.linalg.norm(c-sample, axis=2)
+c = np.repeat(sample[:,None, :], n, axis=1) # cost (n,n,d)
+
+c = np.linalg.norm(c-sample, axis=2) # set distance between tow point as cost (n,n)
 u = np.zeros(n)
 
 plt.scatter(sample[:,0], sample[:, 1])
+plt.title('Sample')
 plt.show()
 
 def plot(order, sample, n):
@@ -147,11 +149,11 @@ def simulated_annealing_TSP(c, n, max_attempts = 200, T=200, T_min=1, decay = 0.
     return best_x, best_order
     
 
-max_attempts = 100
-T = 200
-T_min = 0.01
-decay = 0.995
-max_iter = 10000
+max_attempts = 100 
+T = 200  # maximum tolerance for the temperature
+T_min = 0.01  
+decay = 0.995 # temperature decay
+max_iter = 10000 # maximum iteration number
 
 x, order = simulated_annealing_TSP(c, n, max_attempts, T, T_min, decay, max_iter)
 
