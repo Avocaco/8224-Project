@@ -31,7 +31,7 @@ def plot(order, sample, n):
     plt.show()
     
     
-    def objective(c, x):
+def objective(c, x):
     return np.sum(x*c)
 
 def get_order(x, n):
