@@ -130,16 +130,17 @@ def simulated_annealing_TSP(c, n, max_attempts = 200, T=200, T_min=1, decay = 0.
             
             xc, orderc = step(xc, orderc, n)
             obj = objective(c, xc)
+            # Decide if we should accept the neighbour
             if obj <= current_obj or random.random()< math.exp((current_obj-obj)/T):
                 current_obj = obj
                 x = xc
                 order = orderc
-            
+            # Keep track of the best solution found
             if obj < best_obj:
                 best_obj = obj
                 best_x = xc
                 best_order = orderc
-                
+        # Cool the system        
         T *= decay
         
         if not (epoch+1)%100:
